@@ -32,24 +32,43 @@ function showPage(list, page) {
    //display any list item with an index that is greater than or equal to the start index variable and less than the end index variable
    for (let i = 0; i < list.length; i++) {
       if ( i >= startIndex && i < endIndex) {
-         list[i].style.display = 'display';
+         list[i].style.display = '';
       } else {
          list[i].style.display = 'none';
       }
    }
 }
 
-showPage(studentListItems, 2);
-
-
-
 /*** 
    Create the `appendPageLinks function` to generate, append, and add 
    functionality to the pagination buttons.
 ***/
 
+function appendPageLinks(list) {
 
+   //create and append the DOM elements for the pagination links
+   const div = document.querySelector('.page')
+      .appendChild(document.createElement('div'))
+   div.className = 'pagination';
 
+   const ul = div.appendChild(document.createElement('ul'));
+   
+   for (p = 0; p < (studentListItems.length / itemsPerPage); p++) {
+      const li = ul.appendChild(document.createElement('li'));
+
+      //each LI element contains a link element 
+      const a = li.appendChild(document.createElement('a'));
+
+      //an href attribute of #
+      a.href = '#';
+      
+      //text set to the page number each link will show. First link is 1. Second link is 2. And so on...
+      a.textContent = p + 1;
+   }
+   
+}
+
+appendPageLinks(studentListItems);
 
 
 // Remember to delete the comments that came with this file, and replace them with your own code comments.
