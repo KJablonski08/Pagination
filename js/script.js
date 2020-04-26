@@ -26,20 +26,20 @@ const itemsPerPage = 10;
 //`showPage` function to hide all of the items in the list except for the ten you want to show.
 
 function showPage(list, page) {
-   let beginIndex = (page * itemsPerPage) - itemsPerPage;
+   let startIndex = (page * itemsPerPage) - itemsPerPage;
    let endIndex = page * itemsPerPage;
 
    //display any list item with an index that is greater than or equal to the start index variable and less than the end index variable
    for (let i = 0; i < list.length; i++) {
-      if ( i < beginIndex || i > endIndex) {
-         list[i].style.display = 'none';
+      if ( i >= startIndex && i < endIndex) {
+         list[i].style.display = 'display';
       } else {
-         console.log(list[i]);
+         list[i].style.display = 'none';
       }
    }
 }
 
-showPage(studentListItems, 1);
+showPage(studentListItems, 2);
 
 
 
