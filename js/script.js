@@ -21,8 +21,8 @@ FSJS project 2 - List Filter and Pagination
 
 const studentListItems = document.getElementsByClassName('student-item cf'); 
 
-console.log(studentListItems);
-
+//variable to store the number of items to show on each “page” - for this project - 10
+const itemsPerPage = 10;
 
 
 /*** 
