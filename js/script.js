@@ -67,10 +67,17 @@ function appendPageLinks(list) {
 
       //text set to the page number each link will show. First link is 1. Second link is 2. And so on...
       a.textContent = p + 1;
+
+      a.addEventListener('click', (e) => {
+         console.log("clicked")
+
+      })
    }
 }
 
 appendPageLinks(studentListItems);
+
+
 
 
 // Remember to delete the comments that came with this file, and replace them with your own code comments.
