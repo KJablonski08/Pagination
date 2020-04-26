@@ -61,11 +61,13 @@ function appendPageLinks(list) {
 
       //an href attribute of #
       a.href = '#';
-      
+      if (p === 0) {
+         a.className = 'active';
+      }
+
       //text set to the page number each link will show. First link is 1. Second link is 2. And so on...
       a.textContent = p + 1;
    }
-   
 }
 
 appendPageLinks(studentListItems);
