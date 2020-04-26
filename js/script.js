@@ -69,7 +69,7 @@ function appendPageLinks(list) {
       a.textContent = p + 1;
 
       a.addEventListener('click', (e) => {
-         console.log("clicked")
+         a.className = '';
 
       })
    }
