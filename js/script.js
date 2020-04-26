@@ -67,12 +67,21 @@ function appendPageLinks(list) {
 
       //text set to the page number each link will show. First link is 1. Second link is 2. And so on...
       a.textContent = p + 1;
-
-      a.addEventListener('click', (e) => {
-         a.className = '';
-
-      })
    }
+
+   const links = document.querySelectorAll('a');
+
+   ul.addEventListener('click', (e) => {
+      //active class name should be removed from all pagination links
+      for (let i = 0; i < links.length; i++) {
+         links[i].className = '';
+      }
+      //active class name should be added to the link that was just clicked.
+      e.target.className = 'active';
+      
+      //showPage function to be called, passing in as arguments, the global variable for the list items, and the page number that should be shown.
+      showPage(studentListItems, e.target.textContent);
+   })
 }
 
 appendPageLinks(studentListItems);
