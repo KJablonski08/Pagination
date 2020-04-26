@@ -11,13 +11,13 @@ document.addEventListener('DOMContentLoaded', (e) => {
    //stores the number of items to show on each “page” - for this project - 10
    const itemsPerPage = 10;
 
-   //`showPage` function to hide all of the items in the list except for number of items in itemsPerPage function 
+   //`showPage` function to hide all of the items in the list except for number of items required in itemsPerPage function 
 
    function showPage(list, page) {
       let startIndex = (page * itemsPerPage) - itemsPerPage;
       let endIndex = page * itemsPerPage;
 
-      //display any list item with an index that is greater than or equal to the start index variable and less than the end index variable
+      //display any list item with an index >= to start index variable and < end index variable
       for (let i = 0; i < list.length; i++) {
          if ( i >= startIndex && i < endIndex) {
             list[i].style.display = '';
@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', (e) => {
       }
    }
    
-   //'appendPageLinks' generate, append, and add functionality to the pagination buttons.
+   //'appendPageLinks' generate, append, and add functionality to the pagination buttons at bottom of the page
 
    function appendPageLinks(list) {
 
@@ -38,14 +38,17 @@ document.addEventListener('DOMContentLoaded', (e) => {
 
       const ul = div.appendChild(document.createElement('ul'));
       
+      //add link for each li item in ul 
       for (p = 0; p < (studentListItems.length / itemsPerPage); p++) {
          const li = ul.appendChild(document.createElement('li'));
 
          //each LI element contains a link element 
          const a = li.appendChild(document.createElement('a'));
 
-         //an href attribute of #
+         //an href attribute of # to each link
          a.href = '#';
+
+         //added class of 'active' to first 'page'
          if (p === 0) {
             a.className = 'active';
          }
@@ -56,11 +59,13 @@ document.addEventListener('DOMContentLoaded', (e) => {
 
       const links = document.querySelectorAll('a');
 
+      //event listener for each link element
       ul.addEventListener('click', (e) => {
          //active class name should be removed from all pagination links
          for (let i = 0; i < links.length; i++) {
             links[i].className = '';
          }
+         
          //active class name should be added to the link that was just clicked.
          e.target.className = 'active';
          
@@ -68,7 +73,7 @@ document.addEventListener('DOMContentLoaded', (e) => {
          showPage(studentListItems, e.target.textContent);
       })
    }
-   
+
    showPage(studentListItems, 1);
    appendPageLinks(studentListItems);
 });
