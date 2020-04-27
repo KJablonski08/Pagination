@@ -88,7 +88,10 @@ document.addEventListener('DOMContentLoaded', (e) => {
 
       button.addEventListener('click', (e) => {
          e.preventDefault();
-         console.log("searching now...")
+         const searchInput = input.value;
+         input.value = ''; 
+         console.log(searchInput)
+         
        });
 
    } 
