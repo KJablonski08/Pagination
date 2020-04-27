@@ -65,7 +65,7 @@ document.addEventListener('DOMContentLoaded', (e) => {
          for (let i = 0; i < links.length; i++) {
             links[i].className = '';
          }
-         
+
          //active class name should be added to the link that was just clicked.
          e.target.className = 'active';
          
@@ -74,6 +74,22 @@ document.addEventListener('DOMContentLoaded', (e) => {
       })
    }
 
+
+   function appendSearchBar(list) {
+      // dynamically reate and append the DOM elements for the Search Bar
+      const div = document.querySelector('.page-header')
+         .appendChild(document.createElement('div'));
+      div.className = 'student-search';
+
+      const input = div.appendChild(document.createElement('input'));
+      input.placeholder = 'Search for students...';
+      const button = div.appendChild(document.createElement('button'));
+      button.textContent = 'Search';
+
+      
+   } 
+
+   appendSearchBar(studentListItems);
    showPage(studentListItems, 1);
    appendPageLinks(studentListItems);
 });
