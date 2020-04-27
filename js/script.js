@@ -90,8 +90,15 @@ document.addEventListener('DOMContentLoaded', (e) => {
          e.preventDefault();
          const searchInput = input.value;
          input.value = ''; 
-         console.log(searchInput)
          
+         for (let i = 0; i < list.length; i++) {
+            const name = list[i].querySelector('h3').textContent;
+            if (name.includes(searchInput)) {
+               list[i].style.display = '';
+            } else {
+               list[i].style.display = 'none';
+            }
+         }
        });
 
    } 
