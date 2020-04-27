@@ -86,10 +86,15 @@ document.addEventListener('DOMContentLoaded', (e) => {
       const button = div.appendChild(document.createElement('button'));
       button.textContent = 'Search';
 
-      
+      button.addEventListener('click', (e) => {
+         e.preventDefault();
+         console.log("searching now...")
+       });
+
    } 
 
    appendSearchBar(studentListItems);
    showPage(studentListItems, 1);
    appendPageLinks(studentListItems);
+
 });
