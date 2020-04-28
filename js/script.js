@@ -98,6 +98,10 @@ document.addEventListener('DOMContentLoaded', (e) => {
       button.addEventListener('click', (e) => {
          e.preventDefault();
          studentListItems = [];
+         if (document.querySelector('.not-found')) {
+            document.querySelector('.not-found').remove();
+         }
+         
          const searchInput = input.value;
          input.value = ''; 
          
@@ -111,8 +115,18 @@ document.addEventListener('DOMContentLoaded', (e) => {
             }
          }
 
+         if (studentListItems.length === 0) {
+            const error = document.querySelector('.student-list')
+            const errorMessage = appendElement(error, 'p');
+            errorMessage.className = "not-found"
+            errorMessage.textContent = `No students matching the name '${searchInput}'. Please try another name`;
+         }
+
          showPage(studentListItems, 1)
+
+         //resets pagination links 
          document.querySelector('.pagination').remove();
+
          appendPageLinks(studentListItems);
       });
       
