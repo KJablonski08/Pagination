@@ -6,7 +6,7 @@ FSJS project 2 - List Filter and Pagination
 document.addEventListener('DOMContentLoaded', (e) => {
   
    //stores the student list item elements
-   const studentListItems = document.getElementsByClassName('student-item cf'); 
+   let studentListItems = document.getElementsByClassName('student-item cf'); 
 
    //stores the number of items to show on each “page” - for this project - 10
    const itemsPerPage = 10;
@@ -39,7 +39,7 @@ document.addEventListener('DOMContentLoaded', (e) => {
       const ul = div.appendChild(document.createElement('ul'));
       
       //add link for each li item in ul 
-      for (p = 0; p < (studentListItems.length / itemsPerPage); p++) {
+      for (p = 0; p < (list.length / itemsPerPage); p++) {
          const li = ul.appendChild(document.createElement('li'));
 
          //each LI element contains a link element 
@@ -70,13 +70,12 @@ document.addEventListener('DOMContentLoaded', (e) => {
          e.target.className = 'active';
          
          //showPage function to be called, passing in as arguments, the global variable for the list items, and the page number that should be shown.
-         showPage(studentListItems, e.target.textContent);
+         showPage(list, e.target.textContent);
       })
    }
 
-
    function appendSearchBar(list) {
-      // dynamically reate and append the DOM elements for the Search Bar
+      // dynamically create and append the DOM elements for the Search Bar
       const div = document.querySelector('.page-header')
          .appendChild(document.createElement('div'));
       div.className = 'student-search';
@@ -88,6 +87,7 @@ document.addEventListener('DOMContentLoaded', (e) => {
 
       button.addEventListener('click', (e) => {
          e.preventDefault();
+         studentListItems = [];
          const searchInput = input.value;
          input.value = ''; 
          
@@ -95,16 +95,21 @@ document.addEventListener('DOMContentLoaded', (e) => {
             const name = list[i].querySelector('h3').textContent;
             if (name.includes(searchInput)) {
                list[i].style.display = '';
+               studentListItems.push(list[i]);
             } else {
                list[i].style.display = 'none';
             }
          }
-       });
 
+         showPage(studentListItems, 1)
+         document.querySelector('.pagination').remove();
+         appendPageLinks(studentListItems);
+      });
+      
    } 
 
+   appendPageLinks(studentListItems);
    appendSearchBar(studentListItems);
    showPage(studentListItems, 1);
-   appendPageLinks(studentListItems);
 
 });
