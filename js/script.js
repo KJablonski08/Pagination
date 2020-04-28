@@ -97,7 +97,11 @@ document.addEventListener('DOMContentLoaded', (e) => {
 
       button.addEventListener('click', (e) => {
          e.preventDefault();
+
+         //resets array back to zero items 
          studentListItems = [];
+
+         //if search has been run - resets error message for zero search results found 
          if (document.querySelector('.not-found')) {
             document.querySelector('.not-found').remove();
          }
@@ -115,6 +119,7 @@ document.addEventListener('DOMContentLoaded', (e) => {
             }
          }
 
+         //if no search results are found - appends error message to document
          if (studentListItems.length === 0) {
             const error = document.querySelector('.student-list')
             const errorMessage = appendElement(error, 'p');
