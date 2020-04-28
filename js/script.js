@@ -5,10 +5,10 @@ FSJS project 2 - List Filter and Pagination
 
 document.addEventListener('DOMContentLoaded', (e) => {
   
-   //stores the student list item elements
+   //array of student list item elements 
    let studentListItems = document.getElementsByClassName('student-item cf'); 
 
-   //stores the number of items to show on each “page” - for this project - 10
+   //number of items to show on each “page” - for this project - 10
    const itemsPerPage = 10;
 
    //`showPage` function to hide all of the items in the list except for number of items required in itemsPerPage function 
@@ -27,23 +27,31 @@ document.addEventListener('DOMContentLoaded', (e) => {
       }
    }
    
+   //function used in appendPageLinks and AppendSearchBar to create elements and append to element
+   function appendElement(elementName, newElementName) {
+      const element = document.createElement(newElementName);
+      return elementName.appendChild(element);
+    }
+
    //'appendPageLinks' generate, append, and add functionality to the pagination buttons at bottom of the page
 
    function appendPageLinks(list) {
 
       //create and append the DOM elements for the pagination links
-      const div = document.querySelector('.page')
-         .appendChild(document.createElement('div'))
-      div.className = 'pagination';
+      const page = document.querySelector('.page')
 
-      const ul = div.appendChild(document.createElement('ul'));
+      const div = appendElement(page, 'div')
+      div.className = 'pagination';
+      const ul = appendElement(div, 'ul')
+      
       
       //add link for each li item in ul 
       for (p = 0; p < (list.length / itemsPerPage); p++) {
-         const li = ul.appendChild(document.createElement('li'));
+
+         const li = appendElement(ul, 'li')
 
          //each LI element contains a link element 
-         const a = li.appendChild(document.createElement('a'));
+         const a = appendElement(li, 'a')
 
          //an href attribute of # to each link
          a.href = '#';
@@ -76,13 +84,15 @@ document.addEventListener('DOMContentLoaded', (e) => {
 
    function appendSearchBar(list) {
       // dynamically create and append the DOM elements for the Search Bar
-      const div = document.querySelector('.page-header')
-         .appendChild(document.createElement('div'));
+      const pageHeader = document.querySelector('.page-header');
+
+      const div = appendElement(pageHeader, 'div');
       div.className = 'student-search';
 
-      const input = div.appendChild(document.createElement('input'));
+      const input = appendElement(div, 'input');
       input.placeholder = 'Search for students...';
-      const button = div.appendChild(document.createElement('button'));
+
+      const button = appendElement(div, 'button');
       button.textContent = 'Search';
 
       button.addEventListener('click', (e) => {
