@@ -1,8 +1,3 @@
-# Unit-2-pagination
- write JavaScript to divide a long list into a series of "pages" and improve the user experience of a web page
+# Pagination 
 
-A description of the project in your own words
-
-The skills, techniques and process used to complete the project
-
-If you’ve attempted to earn an “Exceeds Expectations” grade, list the “Extra Credit” features you added.
+This project uses JavaScript to display a subset of items from a long list. It dynamically creates pagination links (filtering into groups of 10 for readability) to allow the user to view more subsets. The user is able to search/filter for a subset of items based on a string input to a form.
